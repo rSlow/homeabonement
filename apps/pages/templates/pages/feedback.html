@@ -19,32 +19,48 @@
         {% csrf_token %}
 
         <div class="form-field">
-            <div class="field-input">
-                {{ form.name }}
-                {{ form.name.label_tag }}
-                {{ form.errors.name }}
+            <div class="field-input-wrapper">
+                <div class="field-input">
+                    {{ form.name }}
+                    {{ form.name.label_tag }}
+                </div>
+                <div class="field-icons">
+                    <img src="{% static 'base/img/forms/user.svg' %}" alt="user">
+                </div>
             </div>
-            <div class="field-icon">
-                <img src="{% static 'base/img/forms/user.svg' %}" alt="user">
-            </div>
+            {{ form.errors.name }}
         </div>
 
         <div class="form-field">
-            <div class="field-input">
-                {{ form.email }}
-                {{ form.email.label_tag }}
-                {{ form.errors.email }}
+            <div class="field-input-wrapper">
+                <div class="field-input">
+                    {{ form.email }}
+                    {{ form.email.label_tag }}
+                </div>
+                <div class="field-icons">
+                    <img src="{% static 'base/img/forms/email.svg' %}" alt="email">
+                </div>
+
             </div>
-            <div class="field-icon">
-                <img src="{% static 'base/img/forms/email.svg' %}" alt="email">
-            </div>
+            {{ form.errors.email }}
         </div>
         <div class="form-field ">
-            <div class="field-input text">
-                {{ form.text }}
-                {{ form.text.label_tag }}
-                {{ form.errors.text }}
+            <div class="field-input-wrapper">
+                <div class="field-input text">
+                    {{ form.text }}
+                    {{ form.text.label_tag }}
+                </div>
             </div>
+            {{ form.errors.text }}
+        </div>
+
+        <div class="form-field">
+            <div class="field-input-wrapper">
+                <div class="field-input captcha">
+                    {{ form.captcha }}
+                </div>
+            </div>
+            {{ form.errors.captcha }}
         </div>
 
         <div class="feedback-files-loader">
@@ -64,7 +80,5 @@
 {% endblock %}
 
 {% block javascript %}
-
     <script src="{% static 'pages/js/feedback.js' %}"></script>
-    <script src="{% static 'base/js/uuid.min.js' %}"></script>
 {% endblock %}

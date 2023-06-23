@@ -23,6 +23,8 @@ class FeedbackModelAdmin(admin.ModelAdmin):
     def count_files(self, obj: FeedbackModel):
         return obj.files.count()
 
+    count_files.short_description = "Файлы"
+
     def get_queryset(self, request):
         qs = super().get_queryset(request=request).prefetch_related("files")
         return qs
