@@ -91,3 +91,7 @@ class FeedbackFormView(CreateView):
             message="Ваш запрос отправлен в службу поддержки. Спасибо!"
         )
         return HttpResponseRedirect(self.success_url)
+
+
+class ForbiddenDirectPageView(TemplateView):
+    template_name = 'pages/forbidden_direct.html'

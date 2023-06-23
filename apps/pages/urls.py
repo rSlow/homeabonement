@@ -7,4 +7,5 @@ urlpatterns = [
     path("policy/", views.PolicyPageView.as_view(), name="policy"),
     path("feedback/", views.FeedbackFormView.as_view(), name="feedback"),
     path("offer/", views.OfferPageView.as_view(), name="offer"),
+    path("forbidden/", views.ForbiddenDirectPageView.as_view(), name="forbidden_direct"),
 ]
