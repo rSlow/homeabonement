@@ -1,4 +1,4 @@
-from config.settings.base import ENV
+from config.settings_includes.base import ENV
 
 DATABASES = {
     "default": {

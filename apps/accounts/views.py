@@ -5,5 +5,3 @@ from .forms import CustomResetPasswordForm
 
 class CustomPasswordResetView(PasswordResetView):
     form_class = CustomResetPasswordForm
-
-

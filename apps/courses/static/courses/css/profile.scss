@@ -281,6 +281,12 @@
   }
 
   & > label {
+    max-width: 250px;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
     & > input[type=file] {
       width: 0;
       height: 0;
