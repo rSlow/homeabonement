@@ -1,0 +1,27 @@
+.footer {
+  padding: 20px 0;
+  color: black;
+  border-top: 1px var(--main-color) solid;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.footer-row {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  text-align: center;
+}
+
+.footer-title-row {
+  a {
+    font-weight: 600;
+  }
+}
+
+.footer-buttons-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 10px;
+}

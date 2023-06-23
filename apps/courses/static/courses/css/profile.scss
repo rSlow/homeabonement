@@ -1,0 +1,341 @@
+@import "static/base/css/vars";
+
+.profile-form {
+  margin-bottom: 10px;
+  padding: 30px 50px 40px;
+  border-radius: 30px;
+  @include blur;
+
+  display: grid;
+  grid-template-areas:
+          "header buttons"
+          "main main";
+  grid-row-gap: 20px;
+
+  @include media_screen_width-768px {
+    grid-template-areas:
+          "header"
+          "main"
+          "buttons";
+  }
+  @include media_screen_width-576px {
+    padding: 0 10px;
+    border-radius: 0;
+    @include unblur;
+  }
+}
+
+// ----- FORM HEADER -----
+
+.profile-form-header {
+  grid-area: header;
+
+  @include media_screen_width-768px {
+    text-align: center;
+  }
+}
+
+.profile-form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 10px;
+  grid-area: buttons;
+  padding: 7px 0;
+
+  @include media_screen_width-768px {
+    padding: 0;
+    margin-top: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+
+}
+
+// ----- FORM MAIN -----
+
+.profile-form-main {
+  grid-area: main;
+
+  display: grid;
+  grid-template-columns: 300px 300px auto;
+  grid-template-areas: "photo course userdata";
+  grid-gap: 50px;
+
+  @include media_screen_width(1100px) {
+    grid-template-areas:
+      "course course"
+      "photo userdata";
+    grid-template-columns:40% 1fr;
+    grid-template-rows: 300px auto;
+  }
+  @include media_screen_width-768px {
+    grid-template-rows: 230px auto;
+    grid-row-gap: 30px;
+  }
+  @include media_screen_width-576px {
+    grid-template-areas:
+      "course"
+      "photo"
+      "userdata";
+    grid-template-columns:1fr;
+    grid-template-rows: 250px auto auto;
+  }
+  @include media_screen_width(400px) {
+    grid-template-rows: 300px auto auto;
+  }
+}
+
+// ----- FORM COURSE -----
+
+.profile-course {
+  grid-area: course;
+}
+
+.profile-course-tab {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+
+  box-shadow: 0 0 10px 3px var(--main-color);
+
+  position: relative;
+  overflow: hidden;
+  display: block;
+
+  transition: .5s;
+
+  &.locked {
+    box-shadow: 0 0 10px 3px gray;
+
+    & > .profile-course-tab-background {
+      filter: contrast(30%) opacity(90%);
+    }
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.profile-course-tab-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  opacity: 0.5;
+  z-index: 1;
+
+  transition: .5s;
+
+  &:hover {
+    transform: scale(1.15);
+  }
+}
+
+.profile-course-tab-title {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 2;
+  font-weight: 800;
+  font-size: 1.5rem;
+  pointer-events: none;
+}
+
+.profile-course-tab-lessons {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.profile-course-tab-desc {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+
+  z-index: 2;
+  text-align: center;
+  pointer-events: none;
+
+  padding: 0 10px;
+  width: 70%;
+
+  // ----- BACKGROUND GLOW -----
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    content: "";
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 100px 100px rgba(255, 255, 255, 0.8);
+    z-index: -1;
+  }
+
+  &.buy {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  > p.desc-purchase {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  > p.desc-goto {
+    font-weight: 800;
+    font-size: 1.5rem;
+  }
+
+  > .desc-button {
+    font-weight: 800;
+    font-size: 1.4rem;
+    pointer-events: none;
+    border-width: 4px;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+// ----- FORM USER BLOCK -----
+
+.profile-user-block {
+  grid-area: userdata;
+}
+
+.profile-user-block-field {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  width: 100%;
+
+  & > .input-field {
+    background-color: transparent;
+    outline: none;
+    border-bottom: 2px var(--main-color) solid;
+
+    font-size: 1rem;
+    padding: 5px 40px 5px 3px;
+
+    & > input, select {
+      width: 100%;
+      height: 100%;
+      font-size: 1rem;
+      font-family: inherit;
+      outline: none;
+      background-color: transparent;
+      padding: 0;
+    }
+
+    & input:-webkit-autofill {
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    & > input[disabled] {
+      font-weight: 500;
+      cursor: not-allowed;
+      color: inherit;
+    }
+  }
+
+  & > label {
+    text-align: center;
+    margin-bottom: 3px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    position: relative;
+  }
+}
+
+// ----- FORM PHOTO BLOCK -----
+
+.profile-photo-block {
+  grid-area: photo;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @include media_screen_width-576px {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+.profile-photo-service {
+  position: relative;
+  row-gap: 20px;
+
+  & > ul.errorlist {
+    font-size: 0.8rem;
+    text-align: center;
+    color: red;
+  }
+
+  & > label {
+    & > input[type=file] {
+      width: 0;
+      height: 0;
+      position: absolute;
+    }
+
+    & > p {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+  //&:hover > label ~ .photo-max-size-text {
+  //  display: block;
+  //}
+
+  input[type="file"] {
+    background: none;
+    border: none;
+  }
+}
+
+.profile-photo-image {
+  width: 100%;
+  overflow: hidden;
+  object-fit: cover;
+
+  box-shadow: 0 0 15px black;
+  border-radius: 50%;
+  border: 2px var(--main-color) solid;
+  margin-bottom: 20px;
+
+  > img {
+    width: 100%;
+  }
+}
+
+.photo-max-size-text {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(-80%) translateX(10%);
+
+  background-color: white;
+  border-radius: 10px;
+  border: 1px black solid;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+
+  display: none;
+  pointer-events: none;
+}
+
+.profile-photo-delete {
+  margin-top: 10px;
+}
+

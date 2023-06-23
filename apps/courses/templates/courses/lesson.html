@@ -1,0 +1,47 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load user %}
+{% load compress %}
+
+{% block title %}
+    Урок № {{ lesson.number }}
+{% endblock %}
+
+{% block css %}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'courses/css/lesson.scss' %}">
+    {% endcompress %}
+
+    {#    PLYR PLAYER    #}
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.3/plyr.css"/>
+{% endblock %}
+
+{% block content %}
+    <div class="lesson-block">
+        <div class="container with-margin">
+            <div class="lesson-row">
+                <div class="lesson-header">
+                    <h2>Урок №{{ lesson.number }}</h2>
+                </div>
+                <div class="lesson-video" style="display: none;">
+                    <video id="player"
+                           playsinline
+                           controls
+                           {% if lesson.thumbnail %}poster="{{ lesson.thumbnail.url }}"{% endif %}
+                    >
+                        {% for video in lesson.videos.all %}
+                            <source src="{{ video.file.url }}" type="video/mp4" size="{{ video.resolution }}"/>
+                        {% endfor %}
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {#    PLYR PLAYER    #}
+    <script src="https://cdn.plyr.io/3.6.3/plyr.js"></script>
+
+    <script src="{% static 'courses/js/lesson.js' %}"></script>
+{% endblock %}

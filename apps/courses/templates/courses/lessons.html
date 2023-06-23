@@ -1,0 +1,46 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load user %}
+{% load compress %}
+
+{% block title %}
+    Уроки
+{% endblock %}
+
+{% block css %}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'courses/css/lessons.scss' %}">
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    <div class="lessons-block">
+        <div class="container with-margin">
+            <div class="lessons-row">
+                <div class="lessons-header">
+                    <h3>КУРС</h3>
+                    <h2>ДОМАШНИЙ АБОНЕМЕНТ</h2>
+                </div>
+                <div class="lessons-grid">
+                    {% for lesson in lesson_list %}
+                        <a class="lesson"
+                           href="{% url 'lesson' pk=lesson.pk %}">
+                            {% if lesson.thumbnail %}
+                                <img src="{{ lesson.thumbnail.url }}" alt="LESSON THUMBNAIL" class="lesson-thumbnail">
+                            {% endif %}
+                            <div class="lesson-title">
+                                Урок №{{ lesson.number }}
+                            </div>
+                            {#<a class="button" href="{% url 'lesson' pk=lesson.pk %}">К уроку</a>#}
+                        </a>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'courses/js/lessons.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends '_base.html' %}
+{% load l10n %}
+{% load static %}
+{% load user %}
+{% load i18n %}
+{% load debug %}
+{% load compress %}
+
+{% block title %} Профиль {% endblock %}
+
+{% block css %}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static "courses/css/profile.scss" %}">
+        <link rel="stylesheet" type="text/x-scss" href="{% static "base/css/forms.scss" %}">
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="profile">
+        <div class="container with-margin">
+            <form class="profile-form" method="post" enctype='multipart/form-data'>
+                {% csrf_token %}
+                <div class="profile-form-header">
+                    <h2>О тебе:</h2>
+                </div>
+                <div class="profile-form-buttons">
+                    <a class="button info" href="{% url 'account_change_password' %}">Изменить пароль</a>
+                    <button class="button success" type="submit">Сохранить изменения</button>
+                </div>
+                <div class="profile-form-main">
+                    {% include 'courses/includes/photo-block.html' with errors=form.errors.photo %}
+                    {% include 'courses/includes/course-tab.html' %}
+                    {% include 'courses/includes/profile-form.html' with form=form %}
+                </div>
+
+                {% if form.non_field_errors %}
+                    <div class="non-field-errors">
+                        {% for error in form.non_field_errors %}
+                            <div class="error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'courses/js/profile.js' %}"></script>
+{% endblock %}

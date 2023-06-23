@@ -1,0 +1,89 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load debug %}
+{% load compress %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block css %}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static "base/css/forms.scss" %}">
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    <form class="form" method="post">
+        {% csrf_token %}
+        <h2 class="form-header">Регистрация</h2>
+
+        {% if form.non_field_errors %}
+            <div class="errors-block">
+                <ul>
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <div class="form-field">
+            <div class="field-input-wrapper">
+                <div class="field-input">
+                    {{ form.email }}
+                    {{ form.email.label_tag }}
+                </div>
+                <div class="field-icons">
+                    <img src="{% static 'base/img/forms/email.svg' %}" alt="email">
+                </div>
+            </div>
+            {{ form.errors.email }}
+        </div>
+
+        <div class="form-field">
+            <div class="field-input-wrapper">
+                <div class="field-input">
+                    {{ form.username }}
+                    {{ form.username.label_tag }}
+                </div>
+                <div class="field-icons">
+                    <img src="{% static 'base/img/forms/user.svg' %}" alt="user">
+                </div>
+            </div>
+            {{ form.errors.username }}
+        </div>
+
+        <div class="form-field">
+            <div class="field-input-wrapper">
+                <div class="field-input">
+                    {{ form.password1 }}
+                    {{ form.password1.label_tag }}
+                </div>
+                <div class="field-icons">
+                    <img src="{% static 'base/img/forms/locked.svg' %}" alt="pass">
+                </div>
+            </div>
+            {{ form.errors.password1 }}
+        </div>
+        <div class="form-field">
+            <div class="field-input-wrapper">
+                <div class="field-input">
+                    {{ form.password2 }}
+                    {{ form.password2.label_tag }}
+                </div>
+                <div class="field-icons">
+                    <img src="{% static 'base/img/forms/locked.svg' %}" alt="pass">
+                    <img src="{% static 'base/img/forms/locked.svg' %}" alt="pass">
+                </div>
+            </div>
+            {{ form.errors.password2 }}
+        </div>
+
+        <button type="submit" class="button wide">Зарегистрироваться</button>
+
+        <div class="register-form__login">
+            Уже зарегистрированы?
+            <a class="underline" href="{% url 'account_login' %}">Войти</a>
+        </div>
+
+    </form>
+{% endblock content %}

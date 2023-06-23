@@ -1,0 +1,32 @@
+$font_path: "../fonts/WixMadeForDisplay";
+$font_name: "Wix Madefor Display";
+
+@font-face {
+  font-family: $font_name;
+  src: url("#{$font_path}/WixMadeforDisplay-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: $font_name;
+  src: url("#{$font_path}/WixMadeforDisplay-Medium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: $font_name;
+  src: url("#{$font_path}/WixMadeforDisplay-SemiBold.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: $font_name;
+  src: url("#{$font_path}/WixMadeforDisplay-Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: $font_name;
+  src: url("#{$font_path}/WixMadeforDisplay-ExtraBold.ttf");
+  font-weight: 800;
+}

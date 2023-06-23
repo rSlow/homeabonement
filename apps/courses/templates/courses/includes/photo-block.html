@@ -1,0 +1,32 @@
+{% load user %}
+{% load static %}
+
+<div class="profile-photo-block">
+    <div class="profile-photo-image">
+        {% if user.photo %}
+            <img src="{{ user.photo.url }}" alt="USER PHOTO">
+        {% else %}
+            <img src="{% static 'courses/img/profile_image_placeholder.png' %}"
+                 alt="PHOTO IS NOT UPLOADED">
+        {% endif %}
+    </div>
+    <div class="profile-photo-service">
+        <label for="id_photo" class="button">
+            <input type="file" name="photo" accept="image/*" id="id_photo">
+            {% if user.photo %}
+                <p>Изменить фото</p>
+            {% else %}
+                <p>Загрузить фото</p>
+            {% endif %}
+        </label>
+
+        <div class="photo-max-size-text">Максимум 2.5 МБ</div>
+        {{ errors }}
+
+        {% if user.photo %}
+            <div class="profile-photo-delete">
+                <a href="{% url 'delete_photo' %}" class="button red">Удалить фото</a>
+            </div>
+        {% endif %}
+    </div>
+</div>

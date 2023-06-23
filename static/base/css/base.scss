@@ -1,0 +1,247 @@
+@import "static/base/css/vars";
+
+/* ###### VARIABLES ###### */
+
+:root {
+  --text-color: #{$text-color};
+  --light-text-color: #{$light-text-color};
+
+  --main-color: #{$main-color};
+  --main-gradient-color: #{$main-gradient-color};
+
+  --container-width: #{$container-width};
+  --small-container-width: #{$small-container-width};
+  --container-padding: #{$container-padding};
+
+  --plyr-color-main: #{$main-color};
+  --vh: #{$vh};
+}
+
+/* ###### SCROLLBAR ###### */
+::-webkit-scrollbar {
+  //width: 0;
+}
+
+/* ###### COMMON ###### */
+html {
+  background: url("../img/background.png") repeat;
+  font-size: 16px;
+
+  @include media_screen_width-768px {
+    font-size: 14px;
+  }
+  @include media_screen_width-576px {
+    font-size: 12px;
+  }
+  @include media_screen_width-350px {
+    font-size: 10px;
+  }
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Wix Madefor Display', sans-serif;
+  font-weight: 400;
+  color: var(--text-color);
+  position: relative;
+}
+
+h1 {
+  font-size: 4rem;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+h5 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+@for $i from 1 through 6 {
+  h#{$i}.centered {
+    text-align: center;
+  }
+}
+
+
+.none {
+  display: none !important;
+}
+
+.centered {
+  text-align: center;
+}
+
+/* ###### LINK UNDERLINE ###### */
+
+.underline {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background: black;
+    border-radius: 1px;
+    transform: scaleX(0);
+    transition: transform .3s;
+    transform-origin: right;
+  }
+
+  &:hover::after {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
+
+  &.bold {
+    font-weight: 600;
+  }
+}
+
+
+/* ###### BUTTONS ###### */
+
+.button {
+  padding: 0.5em 1em;
+  font-size: 1.1em;
+  min-width: 100px;
+  background: transparent;
+  border: 2px black solid;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border .5s, background-color .5s, color .5s, box-shadow .15s, transform .2s;
+  font-weight: 500;
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background: black;
+    color: white;
+  }
+
+  &:active {
+    transform: translateY(2px);
+    box-shadow: 0 0 20px black;
+  }
+
+  &.wide {
+    width: 100%;
+  }
+
+  $colors: (
+          warning:red,
+          success:green,
+          info:#407ef3,
+          main:$main-color,
+  );
+
+  @each $colorClass, $color in $colors {
+    &.#{$colorClass} {
+      border-color: $color;
+      color: $color;
+
+      &.hover,
+      &:hover {
+        background: $color;
+        color: white;
+        border-color: $color;
+      }
+    }
+  }
+}
+
+/* ###### CONTAINERS ###### */
+
+.container {
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+  min-height: 100%;
+  position: relative;
+
+  &.with-margin {
+    margin-top: 100px;
+    @include media_screen_width-768px {
+      margin-top: 80px;
+    }
+    @include media_screen_width-576px {
+      margin-top: 70px;
+    }
+    @include media_screen_width-350px {
+      margin-top: 40px;
+    }
+  }
+}
+
+.container-right {
+  padding-left: calc((100% - #{$container-width}) / 2 + 10px);
+  @include media_screen_width-1150px {
+    padding: 0 $container-padding;
+  }
+}
+
+/* ###### BACK BUTTON ###### */
+
+.back-button {
+  position: fixed;
+  bottom: 50px;
+  left: 50px;
+  z-index: 1000;
+
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 10px;
+
+  background-color: change-color($main-color, $alpha: 0.8);
+  transition: transform .2s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $main-color;
+    transform: scale(1.1);
+  }
+
+  @include media_screen_width-576px {
+    bottom: 30px;
+    left: 30px;
+    width: 40px;
+    height: 40px;
+  }
+  @include media_screen_width-350px {
+    bottom: 20px;
+    left: 20px;
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* ###### APP ROOT ###### */
+
+.app-root {
+  min-height: calc(var(--vh) * 100);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}

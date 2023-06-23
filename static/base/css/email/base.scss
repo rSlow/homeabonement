@@ -1,0 +1,90 @@
+/* ########## VARIABLES ########## */
+@import "static/base/css/vars";
+@import 'static/base/css/email/mixins';
+
+/* ########## RESET ########## */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+table, tr, td, thead, tbody {
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-spacing: 0;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: separate;
+}
+
+/* ########## BODY ########## */
+
+body {
+  font-family: Helvetica, serif !important;
+  color: $primary-color;
+  font-size: 16px;
+}
+
+.table-wrapper {
+  background-color: transparent;
+}
+
+.email-root {
+  display: block;
+  background-color: $background-color;
+  width: $mail-container-width;
+  padding: 20px 20px;
+}
+
+/* ########## BUTTON ########## */
+
+table.button {
+  $brad: 10px;
+  min-width: 100% !important;
+
+  table {
+    table-layout: fixed;
+    width: auto;
+    box-sizing: border-box;
+    border-collapse: separate;
+
+    td {
+      font-size: 14px;
+      vertical-align: top;
+      text-align: center;
+      background-color: $main-color;
+      border-radius: $brad;
+    }
+
+    a {
+      background-color: $main-color;
+      padding: 15px 20px;
+      cursor: pointer;
+      border-radius: $brad;
+      color: $light-text-color;
+      text-align: center;
+      box-sizing: border-box;
+      text-decoration: none;
+      display: inline-block;
+      border-color: $main-color;
+      font-size: 18px;
+    }
+  }
+
+  > tr > td {
+    font-size: 14px;
+    vertical-align: top;
+    padding-bottom: 20px;
+  }
+}

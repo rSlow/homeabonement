@@ -1,0 +1,29 @@
+{% extends '_base.html' %}
+{% load compress %}
+{% load static %}
+
+{% block css %}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'base/css/forms.scss' %}">
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    <div class="container with-margin">
+        <form class="form" action="{% url 'send_check' object.pk %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-field">
+                {{ form.email.label }}
+                {{ form.email }}
+            </div>
+            <div class="form-field">
+                {{ form.payment_id.label }}
+                {{ form.payment_id }}
+            </div>
+            <div class="form-field">
+                {{ form.check_file }}
+            </div>
+            <button class="button">Отправить чек</button>
+        </form>
+    </div>
+{% endblock %}

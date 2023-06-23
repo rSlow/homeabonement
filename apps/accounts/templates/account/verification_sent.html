@@ -1,0 +1,34 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load compress %}
+
+{% block title %}Подтверждение E-mail{% endblock %}
+
+{% block css %}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static "base/css/forms.scss" %}">
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="form">
+        <h2 class="form-header">Подтвердите ваш e-mail</h2>
+        <div class="form-text centered">
+            <h4>
+                Мы отправили вам электронное письмо для проверки.
+            </h4>
+        </div>
+        <div class="form-text">
+            <p>
+                Перейдите по предоставленной ссылке, чтобы завершить процесс регистрации.
+            </p>
+            <p>
+                Если вы не видите письмо с подтверждением в своем основном почтовом ящике,
+                проверьте папку со спамом. Пожалуйста, свяжитесь с нами, если вы не получили электронное письмо с
+                подтверждением в течение нескольких минут.
+            </p>
+        </div>
+    </div>
+
+{% endblock %}

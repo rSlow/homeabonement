@@ -1,0 +1,109 @@
+@import "static/base/css/vars";
+
+// ------ MAPS ------
+
+$sidesMap: (
+        t:top,
+        r:right,
+        b:bottom,
+        l:left,
+);
+
+// ------ BLOCKS ------
+
+.fixed-layout-100 {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.is-block {
+  display: block;
+}
+
+.is-inline-block {
+  display: inline-block;
+}
+
+.is-sec-color {
+  color: $secondary-color;
+}
+
+.is-pr-color {
+  color: $primary-color;
+}
+
+.is-underline {
+  text-decoration: underline;
+}
+
+.is-border-color-light {
+  border-color: $border-color-light !important;
+}
+
+// ------ PADDING (from 0 to 50 step 5) [.pl-5 .py-10 .p-20] ------
+
+@for $i from 0 through 10 {
+  $step: 5;
+  $padding: $i * $step;
+  $paddingValue: #{$padding}px;
+
+  @each $side, $sideValue in $sidesMap {
+    .p#{$side}-#{$padding} {
+      padding-#{$sideValue}: $paddingValue !important;
+    }
+  }
+  .px-#{$padding} {
+    padding: 0 $paddingValue !important;
+  }
+  .py-#{$padding} {
+    padding: $paddingValue 0 !important;
+  }
+  .p-#{$padding} {
+    padding: $paddingValue !important;
+  }
+}
+
+// ------ BORDER [.b-b] ------
+
+@each $side, $sideValue in $sidesMap {
+  .b-#{$side} {
+    border-#{$sideValue}: $border !important;
+  }
+}
+
+.b-x {
+  border-left: $border !important;
+  border-right: $border !important;
+}
+
+.b-y {
+  border-bottom: $border !important;
+  border-top: $border !important;
+}
+
+.b {
+  border: $border !important;
+}
+
+// ------ FONT SIZE (from 6 to 40 step 2) [.fz-6] ------
+
+@for $i from 3 through 20 {
+  $step: 2;
+  $fontSizeValue: $i * $step;
+  $fontSize: #{$fontSizeValue}px;
+
+  .fz-#{$fontSizeValue} {
+    font-size: $fontSize !important;
+  }
+}
+
+// ------ FONT WEIGHT (from 400 to 800 step 100) [.fw-400] ------
+
+@for $i from 4 through 8 {
+  $step: 100;
+  $fontWeight: $i * $step;
+
+  .fw-#{$fontWeight} {
+    font-weight: $fontWeight !important;
+  }
+}

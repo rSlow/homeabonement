@@ -1,0 +1,28 @@
+@import 'static/base/css/email/mixins';
+
+/* ########## PRODUCT CHECK ########## */
+
+.product {
+  tr {
+    //&:first-child > td {    ## idk its not work :(
+    &[role='product-header'] > td {
+      border-bottom: 1px $border-color-light dotted;
+    }
+
+    > td {
+      &:first-child {
+        width: 280px;
+        padding-left: 0;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+
+
+  td {
+    padding: 5px;
+  }
+}

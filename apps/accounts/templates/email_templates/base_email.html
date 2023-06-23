@@ -1,0 +1,72 @@
+{% load static %}
+{% load compress %}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<body>
+
+{% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'base/css/email/base.scss' %}">
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'base/css/email/mixins.scss' %}">
+    {% block scss %}{% endblock %}
+{% endcompress %}
+
+
+<table class="table-wrapper" width="100%">
+    <tr>
+        <td align="center">
+            <table class="email-root">
+                <tr role="email-header">
+                    <td align="center">
+                        <table role="header">
+                            <tr role="header-main">
+                                <td align="center" class="pb-10 fw-700 fz-24">
+                                    Здравствуйте!
+                                </td>
+                            </tr>
+                            <tr role="header-text-block">
+                                <td class="fw-500 fz-20">
+                                    {% block email_header %}
+                                    {% endblock %}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr role="email-body">
+                    <td class="py-10 b-b">
+                        {% block email_body %}
+                        {% endblock %}
+                    </td>
+                </tr>
+
+                <tr role="email-support">
+                    <td class="py-10 b-b" align="center">
+                        Если у Вас возникли дополнительные вопросы, обратитесь в службу поддержки по адресу:
+                        <a class="fw-800"
+                           href="mailto:{{ support_email }}">
+                            {{ support_email }}
+                        </a>
+                    </td>
+                </tr>
+
+                <tr role=   "email-autogenerate">
+                    <td align="center" class="pt-10 is-sec-color fz-12">
+                        {% block autogenerate_text %}
+                            Это письмо сформировано автоматически. Пожалуйста, не отвечайте на него. Вы получили это
+                            письмо, потому что зарегистрировали аккаунт на сайте
+                            <a class="is-pr-color" href="{{ domain }}">
+                                {{ domain }}
+                            </a>
+                        {% endblock %}
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+
+</html>

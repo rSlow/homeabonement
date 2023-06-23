@@ -1,0 +1,76 @@
+{% extends 'email_templates/base_email.html' %}
+{% load account %}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+{% block email_header %}
+
+{% endblock %}
+
+{% block email_body %}
+    {% user_display user as user_display %}
+    <table role="unknown-account">
+        <tr role="unknown-account-desc-row">
+            <td class="b-b py-10" align="center">
+                <table>
+                    <tr role="unknown-account-desc">
+                        <td align="center" class="pb-10">
+                            Вы получили это электронное письмо, потому что Вы или кто-то другой запросил сброс пароля
+                            для учетной записи пользователя по Вашему e-mail адресу
+                            <a class="is-inline-block is-underline" href="">{{ email }}</a>
+                            на сайте онлайн-курса
+                            <a class="fw-600" href="{{ domain }}">ДОМАШНИЙ АБОМЕНЕТ</a>.
+                        </td>
+                    </tr>
+                    <tr role="unknown-account-email">
+                        <td align="center">
+                            Однако, у нас нет никаких записей о пользователе с электронной почтой
+                            <a href="">{{ email }}</a> в нашей базе данных.
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr role="unknown-account-warning-row">
+            <td align="center" class="b-b fw-700 fz-20 py-10">
+                {% include 'email_templates/includes/password-warning-message.html' %}
+            </td>
+        </tr>
+        <tr role="unknown-account-reset-row">
+            <td class="pt-10">
+                <table>
+                    <tr role="unknown-account-reset-desc">
+                        <td class="pb-20" align="center">
+                            В случае, если это были Вы, то Вы можете зарегистрировать учетную запись, нажав на кнопку
+                            <b>Зарегистрироваться</b> ниже.
+                        </td>
+                    </tr>
+                    <tr role="register-button">
+                        <td align="center">
+                            {% include 'email_templates/includes/button.html' with a_url=signup_url a_text="Зарегистрироваться" %}
+                        </td>
+                    </tr>
+                    <tr role="register-link">
+                        <td>
+                            <table>
+                                <tr role="register-link-desc">
+                                    <td class="pb-10" align="center">
+                                        Если кнопка не отображается, перейдите по ссылке ниже:
+                                    </td>
+                                </tr>
+                                <tr role="register-url">
+                                    <td align="center">
+                                        <a class="fw-400 fz-14 is-inline-block"
+                                           href="{{ signup_url }}">
+                                            {{ signup_url }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+{% endblock %}

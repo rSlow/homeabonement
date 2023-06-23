@@ -1,0 +1,16 @@
+{% load static %}
+{% load debug %}
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            {% define message.level_tag as classname %}
+            <li class="message" message-type="{{ classname }}">
+                <p class="message-body">{{ message.message }}</p>
+                <button class="message-closer">
+                    <img src="{% static 'base/img/closer.svg' %}" alt="close">
+                </button>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

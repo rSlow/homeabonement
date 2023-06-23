@@ -1,0 +1,47 @@
+{% extends "_base.html" %}
+
+{% load account %}
+{% load static %}
+{% load compress %}
+
+{% block title %}Подтверждение E-mail адреса{% endblock %}
+
+{% block css %}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static "base/css/forms.scss" %}">
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+
+    {% if confirmation %}
+        {% user_display confirmation.email_address.user as user_display %}
+
+        <form method="post" class="form" action="{% url 'account_confirm_email' confirmation.key %}">
+            {% csrf_token %}
+            <h3 class="form-header">Подтвердите e-mail адрес</h3>
+            <div class="form-text">
+                <p>{% with confirmation.email_address.email as email %}
+                    Пожалуйста, подтвердите
+                    <a class="underline" href="mailto:{{ email }}">{{ email }}</a>
+                    для пользователя <b>{{ user_display }}</b>.
+                {% endwith %}</p>
+            </div>
+
+            <button class="button wide" type="submit">
+                Подтвердить
+            </button>
+        </form>
+
+    {% else %}
+
+        {% url 'account_email' as email_url %}
+
+        <p>
+            This e-mail confirmation link expired or is invalid. Please
+            <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.
+        </p>
+
+    {% endif %}
+
+{% endblock %}

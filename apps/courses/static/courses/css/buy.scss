@@ -1,0 +1,48 @@
+.buy-block {
+
+}
+
+.buy-header {
+  margin-bottom: 10px;
+}
+
+ul.buy-points {
+  margin-left: 20px;
+  margin-bottom: 5px;
+
+  & > li {
+    position: relative;
+    font-size: 1.1rem;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      transform: translateY(10%);
+      left: -20px;
+      content: url("../img/chevron-forward-outline.svg");
+      width: 15px;
+    }
+  }
+}
+
+.buy-profile {
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.buy-price {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.buy-price-cost {
+  font-weight: 800;
+  font-size: 2.5rem;
+  color: var(--main-color);
+}
+
+.buy-button {
+  text-align: center;
+}

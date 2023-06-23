@@ -1,0 +1,30 @@
+{% extends "admin/base.html" %}
+{% load compress %}
+{% load static %}
+
+{% block title %}
+    Администрирование - Домашний абонемент
+{% endblock %}
+
+{% block branding %}
+    {% with "Домашний абонемент - администрирование" as site_header %}
+        <h1 id="site-name">
+            <a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a>
+        </h1>
+    {% endwith %}
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'admin/css/extra-admin.scss' %}">
+    {% endcompress %}
+{% endblock %}
+
+{% block footer %}
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+            integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+            crossorigin="anonymous">
+    </script>
+    <script src="{% static 'admin/js/extra-admin.js' %}"></script>
+{% endblock %}

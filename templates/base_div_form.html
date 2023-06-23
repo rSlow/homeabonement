@@ -1,0 +1,19 @@
+{% extends '_base.html' %}
+{% load compress %}
+{% load static %}
+
+{% block title %}{% endblock title %}
+
+{% block css %}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static "base/css/forms.scss" %}">
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    <div class="form">
+        {% block form_content %}
+
+        {% endblock %}
+    </div>
+{% endblock content %}

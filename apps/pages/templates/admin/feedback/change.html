@@ -1,0 +1,17 @@
+{% extends 'admin/change_form.html' %}
+{% load static %}
+{% load compress %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'admin/feedback/change.scss' %}">
+    {% endcompress %}
+{% endblock %}
+
+{% block submit_buttons_bottom %}
+    {{ block.super }}
+    <div class="submit-row">
+        <input type="submit" class="red" value="Закрыть обращение" name="_close_appeal">
+    </div>
+{% endblock %}

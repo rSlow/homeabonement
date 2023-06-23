@@ -1,0 +1,72 @@
+{% extends '_base.html' %}
+{% load static debug %}
+{% load compress %}
+
+{% block title %}Вход{% endblock %}
+
+{% block css %}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static "base/css/forms.scss" %}">
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    <form class="form" method="post">
+        {% csrf_token %}
+        <h2 class="form-header">Вход</h2>
+
+        {% if form.non_field_errors %}
+            {{ form.non_field_errors }}
+        {% endif %}
+
+        <div class="form-field">
+            <div class="field-input-wrapper">
+                <div class="field-input">
+                    {{ form.login }}
+                    {{ form.login.label_tag }}
+                </div>
+                <div class="field-icons">
+                    <img src="{% static 'base/img/forms/user.svg' %}" alt="user">
+                </div>
+            </div>
+            {{ form.errors.login }}
+        </div>
+
+        <div class="form-field">
+            <div class="field-input-wrapper">
+                <div class="field-input">
+                    {{ form.password }}
+                    {{ form.password.label_tag }}
+                </div>
+                <div class="field-icons">
+                    <img src="{% static 'base/img/forms/locked.svg' %}" alt="pass">
+                </div>
+            </div>
+            {{ form.errors.password }}
+        </div>
+
+        <button type="submit" class="button wide">Войти</button>
+
+        <div class="login-form__remember-forgot">
+            {% if form.remember %}
+                <div class="login-remember">
+                    {{ form.remember.label_tag }}
+                    {{ form.remember }}
+                </div>
+            {% endif %}
+            <a class="underline"
+               href="{% url 'account_reset_password' %}">
+                Забыли пароль?
+            </a>
+        </div>
+        <div class="login-form__create-account">
+            Еще не зарегистрированы?
+            <a class="underline" href="{% url 'account_signup' %}">
+                Регистрация
+            </a>
+        </div>
+    </form>
+{% endblock content %}
+
+{% block javascript %}
+{% endblock %}

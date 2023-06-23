@@ -1,0 +1,10 @@
+#changelist table tbody {
+  tr:has(input[type=checkbox]:checked) {
+    background-color: inherit !important;
+  }
+
+  tr:has(td.action-checkbox input[type=checkbox]:checked) {
+    background: var(--selected-row) !important;
+  }
+}
+

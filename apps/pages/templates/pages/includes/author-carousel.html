@@ -1,0 +1,12 @@
+{% load debug %}
+
+<div class="owl-carousel" id="author-carousel">
+    {% for photo_url in photos %}
+        <div class="author-slider-item-wrapper">
+            <img class="author-slider-item"
+                 data-gallery="clickable"
+                 src="{{ photo_url }}"
+                 alt="{{ photo_url|split:'/'|index:-1 }}">
+        </div>
+    {% endfor %}
+</div>

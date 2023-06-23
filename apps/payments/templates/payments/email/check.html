@@ -1,0 +1,47 @@
+{% extends 'email_templates/base_email.html' %}
+{% load static %}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+{% block scss %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'pages/css/check_email.scss' %}">
+{% endblock %}
+
+{% block email_header %}
+    <tr role="check-header">
+        <td class="b-b pb-15">
+            <table>
+                <tr role="check-gratitude">
+                    <td>
+                        Благодарим Вас за успешный платёж.
+                    </td>
+                </tr>
+                <tr role="check-receipt">
+                    <td>
+                        Вместе с квитанцией Вам выдан кассовый чек, он находится в приложении к этому письму.
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+{% endblock %}
+
+{% block email_body %}
+    <table class="fixed-layout-100 fz-14 product">
+        <tr role="product-header" class="fw-600">
+            <td>Товар</td>
+            <td>Кол-во</td>
+            <td>Цена</td>
+            <td>Стоимость</td>
+        </tr>
+        <tr role="product-body">
+            <td>Доступ к онлайн-курсу ДОМАШНИЙ АБОНЕМЕНТ</td>
+            <td>1</td>
+            <td>{{ payment_amount }} P</td>
+            <td>{{ payment_amount }} P</td>
+        </tr>
+    </table>
+{% endblock %}
+
+padding:0; margin:0; border:none; border-spacing:0; table-layout:fixed; width:100%; border-collapse:separate; font-size:14px
+padding:0; margin:0; border:none; border-spacing:0; table-layout:fixed; width:100%; border-collapse:separate; font-size:14px

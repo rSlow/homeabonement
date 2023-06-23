@@ -1,0 +1,296 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load compress %}
+
+{% block full_title %}
+    ДОМАШНИЙ АБОНЕМЕНТ - ПРЕОБРАЗИ СЕБЯ
+{% endblock %}
+
+{% block css %}
+
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'pages/css/home/home.scss' %}">
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'pages/css/home/footer.scss' %}">
+    {% endcompress %}
+
+    {#    OWL CAROUSEL    #}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'base/css/owlcarousel/owl.carousel.min.scss' %}">
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'base/css/owlcarousel/owl.theme.default.min.scss' %}">
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'pages/css/home/owlcarousel.scss' %}">
+    {% endcompress %}
+
+    {#    PLYR PLAYER    #}
+    <link rel="stylesheet" href="{% static 'base/css/plyr.css' %}"/>
+
+    {#    PHOTOVIEWER    #}
+    <link rel="stylesheet" href="{% static 'base/css/photoviewer/photoviewer.css' %}"/>
+
+{% endblock %}
+
+{% block navbar_buttons %}
+    <a class="underline navbar-button" href="#points">Для тебя</a>
+    <a class="underline navbar-button" href="#author">Обо мне</a>
+    <a class="underline navbar-button" href="#marathon">О курсе</a>
+    <a class="underline navbar-button" href="#results">Результаты</a>
+{% endblock %}
+
+{% block content %}
+    <div class="main">
+        <div id="title" class="title-block">
+            <img src="{% static 'pages/img/home/title-background.png' %}" alt="background" class="background">
+            <div class="container with-margin">
+                <div class="title-block-row">
+                    <div class="title-text">
+                        <h4 class="title__pre-desc">
+                            Онлайн-марафон от
+                            <a class="title-inst-icon-wrapper"
+                               href="https://instagram.com/ikovbiy">
+                                <img class="title-inst-icon"
+                                     src="{% static 'pages/img/home/logo-instagram.svg' %}"
+                                     alt="">
+                            </a>
+                            <b>@ikovbiy</b>
+                        </h4>
+                        <div class="title__desc">
+                            <h1>ДОМАШНИЙ</h1>
+                            <h1>АБОНЕМЕНТ</h1>
+                        </div>
+                        <p class="title__post-desc">
+                            Инструктор по направлениям Zumba Gold, Zumba step, Zumba classic, Zumba toning и Zumba kids
+                        </p>
+                        <div class="title-experience-block">
+                            <div class="title-experience-element">
+                                <div class="title-experience-element__number">
+                                    3
+                                </div>
+                                <div class="title-experience-element__desc">
+                                    Года стажа
+                                </div>
+                            </div>
+                            <div class="title-experience-element">
+                                <div class="title-experience-element__number">
+                                    10+
+                                </div>
+                                <div class="title-experience-element__desc">
+                                    групп под моим руководством
+                                </div>
+                            </div>
+                            <div class="title-experience-element">
+                                <div class="title-experience-element__number">
+                                    100+
+                                </div>
+                                <div class="title-experience-element__desc">
+                                    довольных клиентов
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="take-part-button">
+                        <a class="main-button"
+                           href="{% url 'buy' %}">
+                            {% if user.is_authenticated and user.is_course_purchased %}
+                                Перейти к курсу
+                            {% else %}
+                                Принять участие
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <a class="title-arrow-down" href="#points">
+                <img src="{% static 'pages/img/home/arrow-down.svg' %}" alt="">
+            </a>
+        </div>
+
+        <div id="points" class="points-block ">
+            <div class="container">
+                <div class="points-block-row">
+                    <h2 class="points-title">
+                        Этот марафон для тебя, если:
+                    </h2>
+
+                    <div class="points-row">
+
+                        {% for points_card in points_cards %}
+                            <div class="points-card">
+                                <div class="points-card-col number">
+                                    <span class="points-card-number">
+                                        {{ forloop.counter }}
+                                    </span>
+                                </div>
+                                <div class="points-card-col desc">
+                                    <span class="points-card-desc">
+                                        {{ points_card }}
+                                    </span>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="video" class="video-block">
+            <div class="container">
+                <h3 class="centered video-header">Короткое видео о том, что тебя ждет на марафоне:</h3>
+                <div class="about-video" style="display: none">
+                    <video id="home-player"
+                           playsinline
+                           controls
+                    >
+                        <source src="{% static 'pages/video/videoplayback.mp4' %}" type="video/mp4" size="360"/>
+                    </video>
+                </div>
+            </div>
+        </div>
+
+        <div id="author" class="author-block ">
+            <div class="container-right">
+                <div class="author-block-row">
+                    <div class="author-text-block">
+                        <div class="author-text-block-header">
+                            Привет, я Инна!
+                        </div>
+                        <div class="author-text-block-content">
+                            <p class="author-name">Тренер по ЗУМБА.</p>
+                            <p>Моё главное правило - спорт должен быть в удовольствие. </p>
+                            <p>Хотите классно двигаться, получать незабываемые эмоции, сжигать около
+                                <span class="author-text-block-calories">1000 ккал за тренировку,</span></p>
+                            <p>то Вам сюда.</p>
+                        </div>
+                    </div>
+                    <div class="author-slider-wrapper">
+                        {% include "pages/includes/author-carousel.html" with photos=author_photos %}
+
+                        <button class="slider-button author-slider-button-prev">
+                            {% include 'pages/includes/back-img.html' %}
+                        </button>
+                        <button class="slider-button author-slider-button-next">
+                            {% include 'pages/includes/forward-img.html' %}
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="marathon" class="marathon-block">
+            <div class="container">
+                <div class="marathon-row">
+                    <h2 class="marathon-title centered">
+                        Описание марафона:
+                    </h2>
+                    <div class="marathon-cards">
+
+                        {% for marathon_card in marathon_cards %}
+                            <div class="marathon-card">
+                                <div class="marathon-arrow-block">
+                                    <img class="marathon-arrow-block-img"
+                                         src="{% static 'pages/img/home/icons8-ок.svg' %}"
+                                         alt="arrow"
+                                    >
+                                </div>
+                                <div class="marathon-arrow-text">
+                                    {{ marathon_card }}
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="results" class="results-block">
+            <div class="container">
+                <div class="results-row">
+                    <h2 class="results-title">
+                        В результате вы получите:
+                    </h2>
+
+                    <div class="results-cards">
+
+                        {% for results_card in results_cards %}
+                            <div class="results-card">
+                                <div class="results-card-number">
+                                    {{ forloop.counter }}
+                                </div>
+                                <div class="results-card-text">
+                                    {{ results_card }}
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="feedback">
+            <h2 class="centered feedback-header">Отзывы:</h2>
+            <div class="feedback-slider-wrapper">
+
+                {% include "pages/includes/feedback-carousel.html" with photos=feedback_photos %}
+
+                <button id="feedback-slider-prev-button" class="slider-button white-shadow feedback-slider-button-prev">
+                    {% include 'pages/includes/back-img.html' %}
+                </button>
+                <button id="feedback-slider-next-button" class="slider-button white-shadow feedback-slider-button-next">
+                    {% include 'pages/includes/forward-img.html' %}
+                </button>
+
+            </div>
+        </div>
+
+        <div class="take-part-button under">
+            <a class="main-button large"
+               href="{% url 'buy' %}">
+                {% if user.is_authenticated and user.is_course_purchased %}
+                    Перейти к курсу
+                {% else %}
+                    Принять участие
+                {% endif %}
+            </a>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-row">
+                <div class="footer-title-row">
+                    <p>
+                        © 2023
+                        <a class="underline" href="https://homeabonement.ru">homeabonement.ru</a>
+                        - by
+                        <a class="underline" href="https://t.me/rs1ow">rSlow</a>
+                    </p>
+                </div>
+                <div class="footer-buttons-row">
+                    <a class="underline" href="{% url 'policy' %}">Политика конфиденциальности</a>
+                    <a class="underline" href="{% url 'feedback' %}">Форма обратной связи</a>
+                    <a class="underline" href="{% url 'offer' %}">Договор оферты</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+{% endblock content %}
+
+{% block javascript %}
+
+    <script src="{% static 'pages/js/home.js' %}"></script>
+
+    {#    OWL CAROUSEL    #}
+    <script src="{% static 'base/js/owl.carousel.min.js' %}"></script>
+
+    {#    PLYR PLAYER    #}
+    <script src="{% static 'base/js/plyr.js' %}"></script>
+
+    {#    PHOTOVIEWER    #}
+    <script src="{% static 'base/js/photoviewerCreator.js' %}"></script>
+    <script src="{% static 'base/js/photoviewer.js' %}"></script>
+
+{% endblock %}

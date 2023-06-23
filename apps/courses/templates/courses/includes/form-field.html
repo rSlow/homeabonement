@@ -1,0 +1,9 @@
+<div class="profile-user-block-field">
+    {{ field.label_tag }}
+    <div class="input-field"
+         {% if field.field.disabled %}disabled{% endif %}
+    >
+        {{ field }}
+    </div>
+    {{ errors }}
+</div>

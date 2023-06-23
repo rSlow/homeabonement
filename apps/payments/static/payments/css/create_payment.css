@@ -1,0 +1,9 @@
+.yoomoney-form-wrapper {
+    margin: auto 0;
+    padding: 30px 30px 50px;
+    width: 500px;
+    align-self: center;
+
+    background-color: white;
+    border: 5px var(--main-color) solid;
+}

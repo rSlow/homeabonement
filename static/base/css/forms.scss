@@ -1,0 +1,237 @@
+@import "static/base/css/vars";
+
+/* ###### COMMON FORM ###### */
+
+.form {
+  width: 450px;
+  margin: auto 0;
+  align-self: center;
+
+  border-radius: 30px;
+
+  @include blur;
+  padding: 30px;
+
+  &.wide {
+    width: auto;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+
+  @include media_screen_width-576px {
+    width: 100%;
+    border-radius: 0;
+    backdrop-filter: none;
+  }
+}
+
+.form-header {
+  color: rgb(134, 78, 53);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.form-text {
+  margin-top: 10px;
+  margin-bottom: 20px;
+
+  &.centered {
+    text-align: center;
+  }
+}
+
+.form-field {
+  margin-bottom: 20px;
+  transition: .5s;
+
+  > .field-input-wrapper {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-column-gap: 10px;
+    border-bottom: 1px black solid;
+
+    > .field-input {
+      position: relative;
+
+      textarea {
+        font: inherit;
+        padding: 0 5px;
+        width: 100%;
+
+        resize: none;
+        background: none;
+        outline: none;
+
+        &:focus ~ label,
+        &:valid ~ label {
+          display: none;
+        }
+      }
+
+      label {
+        position: absolute;
+        top: 1rem;
+        left: 5px;
+        pointer-events: none;
+        transform: translateY(-50%);
+        transition: .5s;
+      }
+
+      input {
+        border: none;
+        outline: none;
+        font-size: 1.2rem;
+        padding: 5px;
+        width: 100%;
+        background-color: transparent;
+
+        @include media_screen_width-576px {
+          font-size: 1.3rem;
+        }
+
+        &::placeholder {
+          color: transparent;
+        }
+
+        &:-webkit-autofill {
+          transition: background-color 5000s ease-in-out 0s;
+        }
+
+        &:focus ~ label,
+        &:valid ~ label {
+          top: -5px;
+        }
+      }
+
+      &.captcha {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        > img {
+          width: 200px;
+          margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+          text-align: center;
+
+          &::placeholder {
+            font-size: 0.9rem;
+            color: rgba(0, 0, 0, 0.5);
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    > .field-icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 5px;
+
+      img {
+        width: 1.25rem;
+      }
+    }
+  }
+}
+
+ul.errorlist {
+  margin-top: 5px;
+  font-size: 0.8rem;
+
+  > li {
+    text-align: center;
+    color: red;
+  }
+
+  &.nonfield {
+    margin-top: 0;
+    margin-bottom: 30px;
+    padding: 5px;
+
+    background-color: rgba(255, 0, 0, 0.2);
+    border: 2px solid red;
+
+    > li {
+      color: black;
+    }
+  }
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.success-block {
+  padding: 5px;
+  background-color: rgb(121, 255, 112);
+  border: 3px solid #42b21d;
+  color: #22690d;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+/* ###### LOGIN FORM ###### */
+
+.login-block {
+  display: flex;
+  justify-content: center;
+}
+
+.login-form__remember-forgot {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+
+  input {
+    accent-color: black;
+  }
+
+  label {
+    user-select: none;
+  }
+}
+
+.login-form__create-account {
+  text-align: center;
+
+  a {
+    font-weight: 600;
+  }
+}
+
+.login-remember {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  input {
+    zoom: 1.5;
+  }
+}
+
+
+/* ###### REGISTER FORM ###### */
+
+.register-block {
+  display: flex;
+  justify-content: center;
+}
+
+.register-form__login {
+  margin-top: 10px;
+  text-align: center;
+
+  a {
+    font-weight: 600;
+  }
+}

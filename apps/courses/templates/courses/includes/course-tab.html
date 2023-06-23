@@ -1,0 +1,29 @@
+{% load static %}
+{% load user %}
+
+<div class="profile-course">
+    <a class="profile-course-tab {% if not customuser.is_course_purchased %}locked{% endif %} "
+       href="{% if not customuser.is_course_purchased %}{% url 'buy' %}{% else %}{% url 'lessons' %}{% endif %}">
+        <img class="profile-course-tab-background"
+             src="{% static 'courses/img/course_tab_image.jpg' %}"
+             alt="ДОМАШНИЙ АБОНЕМЕНТ">
+        <div class="profile-course-tab-title">
+            <span>ДОМАШНИЙ АБОНЕМЕНТ</span>
+        </div>
+        <div class="profile-course-tab-lessons">
+            <span>8 уроков</span>
+        </div>
+
+        {% if customuser.is_course_purchased %}
+            <div class="profile-course-tab-desc">
+                <p class="desc-purchase">Доступ к курсу получен</p>
+                <div class="desc-button button main">ПЕРЕЙТИ К УРОКАМ</div>
+            </div>
+        {% else %}
+            <div class="profile-course-tab-desc buy">
+                <p class="desc-purchase">Нет доступа к курсу</p>
+                <div class="desc-button button main">КУПИТЬ ДОСТУП</div>
+            </div>
+        {% endif %}
+    </a>
+</div>

@@ -1,0 +1,55 @@
+.offer-header {
+  margin-bottom: 30px;
+}
+
+ol {
+  counter-reset: item;
+  margin: 5px 0;
+
+  &.offer-body > li {
+    font-weight: 600;
+    font-size: 1.4rem;
+
+    line-height: 1.5rem;
+    margin-bottom: 20px;
+
+    > ol {
+      font-weight: 400;
+      font-size: 1rem;
+      margin: 20px 0;
+    }
+  }
+
+  > li {
+    display: block;
+    margin-left: 10px;
+    margin-bottom: 5px;
+
+    &:before {
+      content: counters(item, ".") ". ";
+      counter-increment: item;
+    }
+  }
+}
+
+ul {
+  li {
+    display: block;
+    margin-left: 15px;
+
+    &:before {
+      content: "● ";
+    }
+  }
+}
+
+.offer-footer {
+  margin-left: 10px;
+  margin-bottom: 30px;
+
+  p {
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
+}

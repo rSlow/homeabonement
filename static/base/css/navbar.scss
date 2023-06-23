@@ -1,0 +1,63 @@
+@import "static/base/css/vars";
+/* ###### NAVBAR ###### */
+
+
+.nav-wrapper {
+  box-shadow: 0 0 20px 0 black;
+  backdrop-filter: blur(30px);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  padding: 7px 0;
+}
+
+.navbar-logo {
+  font-weight: 700;
+  user-select: none;
+  text-align: center;
+  font-size: 1.25rem;
+  flex-direction: column;
+  cursor: pointer;
+  transition: .5s;
+  text-transform: uppercase;
+
+  &:hover {
+    color: var(--main-color);
+  }
+}
+
+.navbar-buttons {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.navbar-links-block {
+  display: flex;
+  column-gap: 10px;
+
+  > a {
+    display: block;
+  }
+
+  @include media_screen_width(900px) {
+    display: none;
+  }
+}
+
+.navbar-user-block {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+

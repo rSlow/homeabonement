@@ -1,0 +1,11 @@
+{% load static %}
+{% load user %}
+
+<div class="profile-user-block">
+    {% include 'courses/includes/form-field.html' with field=form.email errors=form.errors.email locked=True %}
+    {% include 'courses/includes/form-field.html' with field=form.username errors=form.errors.username %}
+    {% include 'courses/includes/form-field.html' with field=form.phone errors=form.errors.phone %}
+    {% include 'courses/includes/form-field.html' with field=form.first_name errors=form.errors.first_name %}
+    {% include 'courses/includes/form-field.html' with field=form.last_name errors=form.errors.last_name %}
+    {% include 'courses/includes/form-field.html' with field=form.sex errors=form.errors.sex %}
+</div>

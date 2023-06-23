@@ -1,0 +1,126 @@
+@import "static/base/css/vars";
+
+// ----- SLIDER BUTTON -----
+
+button.slider-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: var(--main-color);
+  color: white;
+  z-index: 2;
+  font-size: 27px;
+
+  transition: transform .15s;
+
+  display: flex;
+  align-items: center;
+  object-fit: cover;
+
+  cursor: pointer;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+
+  > img {
+    filter: invert(100%) sepia(100%) saturate(10%) hue-rotate(38deg) brightness(107%) contrast(101%);
+    width: 80%;
+  }
+
+  &:active {
+    transform: translateY(-40%);
+  }
+
+  &.white-shadow {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  }
+}
+
+// ----- AUTHOR CAROUSEL -----
+
+.author-slider-wrapper {
+  width: 900px;
+  flex-shrink: 0;
+  position: relative;
+
+  @include media_screen_width-992px {
+    width: 100%;
+  }
+}
+
+.author-slider-item-wrapper {
+  padding: 20px 15px;
+  transition: .25s;
+
+  .center & {
+    padding: 4px 3px;
+
+    &:hover {
+      padding: 0;
+    }
+  }
+
+}
+
+.author-slider-item {
+  object-fit: cover;
+  border-radius: 30px;
+}
+
+$author-slider-button-margin: -15px;
+$author-slider-button-margin-992px: -6px;
+$author-slider-button-padding: 6px;
+
+.author-slider-button-prev {
+  left: $author-slider-button-margin;
+  justify-content: flex-start;
+  padding-left: $author-slider-button-padding;
+  @include media_screen_width-992px {
+    left: $author-slider-button-margin-992px;
+  }
+}
+
+.author-slider-button-next {
+  right: $author-slider-button-margin;
+  justify-content: flex-end;
+  padding-right: $author-slider-button-padding;
+  @include media_screen_width-992px {
+    right: $author-slider-button-margin-992px;
+  }
+}
+
+// ----- FEEDBACK CAROUSEL -----
+
+.feedback-slider-wrapper {
+  position: relative;
+}
+
+.feedback-slider-item-wrapper {
+  overflow: hidden;
+  border: 5px solid rgba(0, 0, 0, 0.8);
+}
+
+$feedback-slider-button-margin: 10px;
+$feedback-slider-button-padding: 6px;
+
+.feedback-slider-button-prev {
+  left: $feedback-slider-button-margin;
+  justify-content: flex-start;
+  padding-left: $feedback-slider-button-padding;
+}
+
+.feedback-slider-button-next {
+  right: $feedback-slider-button-margin;
+  justify-content: flex-end;
+  padding-right: $feedback-slider-button-padding;
+}
+
+img[data-gallery='clickable'] {
+  cursor: zoom-in;
+
+  &:active {
+    cursor: grab;
+  }
+}
