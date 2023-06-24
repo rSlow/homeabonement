@@ -1,4 +1,4 @@
-from config.settings_includes.base import STATIC_ROOT
+from config.settings_includes.a_base import STATIC_ROOT
 
 COMPRESS_ROOT = STATIC_ROOT
 COMPRESS_PRECOMPILERS = [

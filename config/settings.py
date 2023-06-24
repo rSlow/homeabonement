@@ -1,4 +1,4 @@
-from config.settings_includes.base import *
+from config.settings_includes.a_base import *
 from config.settings_includes.allauth import *
 from config.settings_includes.captcha import *
 from config.settings_includes.compressor import *

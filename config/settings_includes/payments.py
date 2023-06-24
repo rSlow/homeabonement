@@ -1,6 +1,6 @@
 from yookassa import Configuration
 
-from config.settings_includes.base import ENV
+from config.settings_includes.a_base import ENV
 
 YOOKASSA_SHOP_ID = ENV.int("YOOKASSA_SHOP_ID")  # shopId
 YOOKASSA_ACCOUNT_ID = ENV.str("YOOKASSA_ACCOUNT_ID")  # account_secret_key

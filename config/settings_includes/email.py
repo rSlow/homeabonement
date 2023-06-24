@@ -1,4 +1,4 @@
-from config.settings_includes.base import ENV, DOMAIN
+from config.settings_includes.a_base import ENV, DOMAIN
 
 if ENV.bool("SMTP_DEBUG"):
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

@@ -8,7 +8,7 @@ from django.views.generic import FormView, UpdateView
 from yookassa.domain.notification import WebhookNotification
 
 from config.context_processors import env_ctx_processor
-from apps.courses.permissions import CourseNotPurchaseRequired
+from config.permissions import CourseNotPurchaseRequired, AdminRequired
 from .forms import CreatePaymentForm, SendPaymentCheckForm
 from .models import PaymentModel
 from .services.client_ip import get_client_ip, is_ip_valid
@@ -55,7 +55,7 @@ class AcceptancePaymentView(UpdateView):
         return response
 
 
-class SendCheckFormView(UpdateView):
+class SendCheckFormView(AdminRequired, UpdateView):
     template_name = 'payments/send_check_form.html'
     form_class = SendPaymentCheckForm
     model = PaymentModel

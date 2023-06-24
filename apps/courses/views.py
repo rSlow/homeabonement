@@ -9,8 +9,8 @@ from django.views.generic.list import ListView
 
 from apps.accounts.forms import CustomUserChangeForm
 from apps.accounts.models import CustomUser
+from config.permissions import CoursePurchaseRequired, CourseNotPurchaseRequired
 from .models import Lesson
-from .permissions import CoursePurchaseRequired, CourseNotPurchaseRequired
 
 
 class ProfileView(LoginRequiredMixin, UpdateView):
