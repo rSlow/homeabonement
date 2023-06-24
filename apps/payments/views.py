@@ -2,13 +2,14 @@ import json
 
 from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import FormView, UpdateView
 from yookassa.domain.notification import WebhookNotification
 
 from config.context_processors import env_ctx_processor
 from config.permissions import CourseNotPurchaseRequired, AdminRequired
+from config.settings import ENV
 from .forms import CreatePaymentForm, SendPaymentCheckForm
 from .models import PaymentModel
 from .services.client_ip import get_client_ip, is_ip_valid
@@ -21,6 +22,9 @@ class CreatePaymentView(CourseNotPurchaseRequired, FormView):
     http_method_names = ["post"]
 
     def post(self, request, *args, **kwargs):
+        if not ENV.bool("PAYMENT_POSSIBLE", default=False):
+            return redirect('home')
+
         data = self.get_form().data
 
         if PaymentModel.check_success(user_id=data["user_id"]):
