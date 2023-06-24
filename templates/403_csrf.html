@@ -1,13 +1,15 @@
-{% extends 'base_div_form.html' %}
+{% extends '_base_form.html' %}
 
 {% block title %}Доступ запрещен{% endblock title %}
 
-{% block form_content %}
-    <h2 class="form-header">Ошибка 403</h2>
-    <div class="form-text centered">
-        <h4> Доступ запрещен </h4>
-        <br>
-        <p>Нам не удалось проверить, действительно ли Вы отправили нам эти данные.
-            Попробуйте еще раз, или повторите попытку с другого устройства.</p>
+{% block content %}
+    <div class="form">
+        <h2 class="form-header">Ошибка 403</h2>
+        <div class="form-text centered">
+            <h4> Доступ запрещен </h4>
+            <br>
+            <p>Нам не удалось проверить, действительно ли Вы отправили нам эти данные.
+                Попробуйте еще раз, или повторите попытку с другого устройства.</p>
+        </div>
     </div>
-{% endblock form_content %}
+{% endblock content %}

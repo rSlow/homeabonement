@@ -21,7 +21,6 @@ $(document).ready(function () {
             dt.items.add(file);
         });
         input.files = dt.files;
-        // e.preventDefault()
     })
 
     function addFileRow(fileGUID, file) {

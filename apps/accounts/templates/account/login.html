@@ -1,14 +1,7 @@
-{% extends '_base.html' %}
-{% load static debug %}
-{% load compress %}
+{% extends '_base_form.html' %}
+{% load static %}
 
 {% block title %}Вход{% endblock %}
-
-{% block css %}
-    {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static "base/css/forms.scss" %}">
-    {% endcompress %}
-{% endblock %}
 
 {% block content %}
     <form class="form" method="post">
@@ -67,6 +60,3 @@
         </div>
     </form>
 {% endblock content %}
-
-{% block javascript %}
-{% endblock %}

@@ -1,17 +1,8 @@
-{% extends '_base.html' %}
-{% load static %}
-{% load compress %}
+{% extends '_base_form.html' %}
 
 {% block title %}Выход{% endblock %}
 
-{% block css %}
-    {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static "base/css/forms.scss" %}">
-    {% endcompress %}
-{% endblock %}
-
 {% block content %}
-
     <form class="form" method="post">
         {% csrf_token %}
 
@@ -22,5 +13,4 @@
         <button type="submit" class="button wide warning">Выйти</button>
 
     </form>
-
 {% endblock content %}

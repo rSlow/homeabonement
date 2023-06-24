@@ -1,29 +1,40 @@
-{% extends '_base.html' %}
-{% load compress %}
+{% extends '_base_form.html' %}
 {% load static %}
 
-{% block css %}
-    {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static 'base/css/forms.scss' %}">
-    {% endcompress %}
-{% endblock %}
+{% block title %}Отправка чека{% endblock %}
 
 {% block content %}
-    <div class="container with-margin">
-        <form class="form" action="{% url 'send_check' object.pk %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="form-field">
-                {{ form.email.label }}
-                {{ form.email }}
+    <form class="form" action="{% url 'send_check' object.pk %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-field">
+            <div class="field-input-wrapper">
+                <div class="field-input">
+                    {{ form.email.label }}
+                    {{ form.email }}
+                </div>
             </div>
-            <div class="form-field">
-                {{ form.payment_id.label }}
-                {{ form.payment_id }}
+            {{ form.errors.email }}
+        </div>
+
+        <div class="form-field">
+            <div class="field-input-wrapper">
+                <div class="field-input">
+                    {{ form.payment_id.label }}
+                    {{ form.payment_id }}
+                </div>
             </div>
-            <div class="form-field">
-                {{ form.check_file }}
+            {{ form.errors.payment_id }}
+        </div>
+
+        <div class="form-field">
+            <div class="field-input-wrapper">
+                <div class="field-input">
+                    {{ form.check_file }}
+                </div>
             </div>
-            <button class="button">Отправить чек</button>
-        </form>
-    </div>
+            {{ form.errors.check_file }}
+        </div>
+
+        <button class="button">Отправить чек</button>
+    </form>
 {% endblock %}

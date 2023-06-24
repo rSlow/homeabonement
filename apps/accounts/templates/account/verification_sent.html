@@ -1,14 +1,6 @@
-{% extends '_base.html' %}
-{% load static %}
-{% load compress %}
+{% extends '_base_form.html' %}
 
 {% block title %}Подтверждение E-mail{% endblock %}
-
-{% block css %}
-    {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static "base/css/forms.scss" %}">
-    {% endcompress %}
-{% endblock %}
 
 {% block content %}
 

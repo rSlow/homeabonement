@@ -2,18 +2,11 @@
 {% load compress %}
 {% load static %}
 
-{% block title %}{% endblock title %}
-
 {% block css %}
     {% compress css %}
         <link rel="stylesheet" type="text/x-scss" href="{% static "base/css/forms.scss" %}">
-    {% endcompress %}
-{% endblock %}
-
-{% block content %}
-    <div class="form">
-        {% block form_content %}
+        {% block scss %}
 
         {% endblock %}
-    </div>
-{% endblock content %}
+    {% endcompress %}
+{% endblock %}

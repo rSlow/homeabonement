@@ -1,16 +1,18 @@
-{% extends 'base_div_form.html' %}
+{% extends '_base_form.html' %}
 
 {% block title %}
     Доступ запрещен
 {% endblock %}
 
-{% block form_content %}
-    <h2 class="centered form-header">
-        Ошибка 403
-    </h2>
+{% block content %}
+    <div class="form">
+        <h2 class="centered form-header">
+            Ошибка 403
+        </h2>
 
-    <div class="form-text centered">
-        <p>Доступ на эту страницу запрещен.</p>
-        <p>Не надо сюда заходить ☺</p>
+        <div class="form-text centered">
+            <p>Доступ на эту страницу запрещен.</p>
+            <p>Не надо сюда заходить ☺</p>
+        </div>
     </div>
 {% endblock %}
