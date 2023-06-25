@@ -6,6 +6,17 @@ from django.db import models
 UserModel = get_user_model()
 
 
+class PaymentsManager(models.Manager):
+    def get_paid_or_none(self, user_id: int):
+        try:
+            return super().get(
+                user_id=user_id,
+                is_paid=True
+            )
+        except ObjectDoesNotExist:
+            return None
+
+
 class PaymentModel(models.Model):
     user = models.ForeignKey(
         to=UserModel,
@@ -50,19 +61,7 @@ class PaymentModel(models.Model):
         null=True,
     )
 
-    @classmethod
-    def check_success(cls, user_id: int):
-        try:
-            payment = PaymentModel.objects.get(
-                user_id=user_id,
-                is_paid=True
-            )
-            if payment:
-                return True
-        except ObjectDoesNotExist:
-            pass
-
-        return False
+    objects = PaymentsManager()
 
     def __str__(self):
         return f"Payment {self.payment_id}"

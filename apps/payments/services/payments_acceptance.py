@@ -62,6 +62,7 @@ def create_payment(user_id: int,
         )
 
     db_payment.payment_id = payment.id
+    db_payment.description = description
     db_payment.idempotency_key = idempotency_key
     db_payment.create_date = datetime.fromisoformat(payment.created_at)
     db_payment.save()
@@ -96,12 +97,12 @@ def get_payment_object(amount: int,
     return payment
 
 
-def get_payment_acceptance_response(payment: WebhookNotification):
-    event = payment.event
+def get_payment_acceptance_response(webhook_payment: WebhookNotification):
+    event = webhook_payment.event
 
     match event:
         case PaymentStatuses.succeeded.value:
-            payment_object = payment.object
+            payment_object = webhook_payment.object
             payment_id = payment_object.id
 
             try:

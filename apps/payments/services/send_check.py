@@ -17,6 +17,7 @@ def get_body(payment_object: PaymentModel, context: dict):
     payment_context = {
         "payment_id": payment_object.payment_id,
         "payment_amount": payment_object.amount,
+        "payment_description": payment_object.description,
     }
     context.update(payment_context)
     body = PremailerRenderer.render(

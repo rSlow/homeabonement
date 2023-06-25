@@ -27,21 +27,24 @@ class CreatePaymentView(CourseNotPurchaseRequired, FormView):
 
         data = self.get_form().data
 
-        if PaymentModel.check_success(user_id=data["user_id"]):
+        payment = PaymentModel.objects.get_paid_or_none(user_id=data["user_id"])
+        if payment:
+            payment_id = payment.payment_id
             return render(
                 request=request,
                 status=400,
-                template_name='payments/already_purchased_payment.html'
+                template_name='payments/already_purchased_payment.html',
+                context={"payment_id": payment_id}
             )
-
-        payment = create_payment(
-            user_id=data["user_id"],
-            amount=data["amount"],
-            description=data["description"],
-        )
-        return HttpResponseRedirect(
-            redirect_to=payment.confirmation.confirmation_url,
-        )
+        else:
+            payment = create_payment(
+                user_id=data["user_id"],
+                amount=data["amount"],
+                description=data["description"],
+            )
+            return HttpResponseRedirect(
+                redirect_to=payment.confirmation.confirmation_url,
+            )
 
 
 class AcceptancePaymentView(UpdateView):
