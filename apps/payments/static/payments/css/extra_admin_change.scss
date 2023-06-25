@@ -1,0 +1,10 @@
+a.send-cheque-button {
+  $color: #1b96a9;
+  padding: 10px 15px;
+  border: 2px $color solid;
+  border-radius: 5px;
+
+  &, &:link, &:visited {
+    text-decoration: none;
+  }
+}

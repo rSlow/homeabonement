@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 
-from environs import Env
+from config.settings_includes.env import get_env
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -9,17 +9,7 @@ APPS_DIR = BASE_DIR / "apps"
 sys.path.insert(0, str(APPS_DIR))
 
 ENV_DIR = BASE_DIR / "env"
-
-ENV = Env()
-# base
-ENV.read_env(str(ENV_DIR / "django.env"))
-# database
-ENV.read_env(str(ENV_DIR / "mysql.env"))
-# email
-ENV.read_env(str(ENV_DIR / "smtp.env"))
-# payments
-ENV.read_env(str(ENV_DIR / "yookassa.env"))
-ENV.read_env(str(ENV_DIR / "yookassa_net.env"))
+ENV = get_env(env_dir=ENV_DIR)
 
 SECRET_KEY = ENV.str("SECRET_KEY")
 DEBUG = ENV.bool("DJANGO_DEBUG", default=False)

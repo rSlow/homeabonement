@@ -1,0 +1,22 @@
+{% extends 'admin/change_form.html' %}
+{% load static %}
+{% load compress %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'payments/css/extra_admin_change.scss' %}">
+    {% endcompress %}
+{% endblock %}
+
+{% block submit_buttons_bottom %}
+    {{ block.super }}
+
+    {% if original.is_paid and not original.is_check_sent %}
+        <div class="submit-row">
+            <a class="send-cheque-button" href="{{ send_cheque_url }}">
+                Отправить чек
+            </a>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -4,7 +4,7 @@
 {% block title %}Отправка чека{% endblock %}
 
 {% block content %}
-    <form class="form" action="{% url 'send_check' object.pk %}" method="post" enctype="multipart/form-data">
+    <form class="form" action="{% url 'send_check' object.payment_id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-field">
             <div class="field-input-wrapper">

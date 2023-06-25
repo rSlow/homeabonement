@@ -14,8 +14,9 @@ from .exceptions import CheckAlreadySentException
 from .forms import CreatePaymentForm, SendPaymentCheckForm
 from .models import PaymentModel
 from .services.client_ip import get_client_ip, is_ip_valid
-from .services.payments_acceptance import get_payment_acceptance_response, create_payment
+from .services.payments_acceptance import accept_payment, create_payment
 from .services.send_check import send_check
+from .services.send_payment_notification import send_payment_notification_message
 
 
 class CreatePaymentView(CourseNotPurchaseRequired, FormView):
@@ -42,6 +43,7 @@ class CreatePaymentView(CourseNotPurchaseRequired, FormView):
                 user_id=data["user_id"],
                 amount=data["amount"],
                 description=data["description"],
+                email=self.request.user.email
             )
             return HttpResponseRedirect(
                 redirect_to=payment.confirmation.confirmation_url,
@@ -58,7 +60,10 @@ class AcceptancePaymentView(UpdateView):
 
         notification_json = json.loads(request.body)
         notification_object = WebhookNotification(notification_json)
-        response = get_payment_acceptance_response(notification_object)
+        response = accept_payment(notification_object)
+        payment_object = PaymentModel.objects.select_related("user").get(payment_id=notification_object.object.id)
+
+        send_payment_notification_message(payment_object=payment_object)
 
         return response
 
@@ -67,6 +72,8 @@ class SendCheckFormView(AdminRequired, UpdateView):
     template_name = 'payments/send_check_form.html'
     form_class = SendPaymentCheckForm
     model = PaymentModel
+    slug_field = "payment_id"
+    slug_url_kwarg = "payment_id"
 
     def get_object(self, queryset=None):
         obj: PaymentModel = super().get_object(queryset=queryset)

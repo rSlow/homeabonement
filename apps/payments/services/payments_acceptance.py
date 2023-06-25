@@ -23,6 +23,7 @@ class NoConfirmationError(BadRequestError):
 def create_payment(user_id: int,
                    amount: int,
                    description: str,
+                   email: str,
                    force: bool = False):
     try:
         if force:
@@ -49,7 +50,8 @@ def create_payment(user_id: int,
             amount=amount,
             description=description,
             user_id=user_id,
-            idempotency_key=idempotency_key
+            email=email,
+            idempotency_key=idempotency_key,
         )
         if payment.confirmation is None:
             raise NoConfirmationError
@@ -58,6 +60,7 @@ def create_payment(user_id: int,
             user_id=user_id,
             amount=amount,
             description=description,
+            email=email,
             force=True
         )
 
@@ -73,6 +76,7 @@ def create_payment(user_id: int,
 def get_payment_object(amount: int,
                        description: str,
                        user_id: int,
+                       email: str,
                        idempotency_key: uuid.UUID):
     payment = Payment.create(
         params={
@@ -87,6 +91,7 @@ def get_payment_object(amount: int,
             "capture": True,
             "description": description,
             "metadata": {
+                "email": email,
                 "user_id": user_id,
                 "idempotency_key": idempotency_key.hex
             },
@@ -97,7 +102,7 @@ def get_payment_object(amount: int,
     return payment
 
 
-def get_payment_acceptance_response(webhook_payment: WebhookNotification):
+def accept_payment(webhook_payment: WebhookNotification):
     event = webhook_payment.event
 
     match event:
