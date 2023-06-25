@@ -1,0 +1,2 @@
+class CheckAlreadySentException(Exception):
+    pass

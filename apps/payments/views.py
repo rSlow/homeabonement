@@ -10,6 +10,7 @@ from yookassa.domain.notification import WebhookNotification
 from config.context_processors import env_ctx_processor
 from config.permissions import CourseNotPurchaseRequired, AdminRequired
 from config.settings import ENV
+from .exceptions import CheckAlreadySentException
 from .forms import CreatePaymentForm, SendPaymentCheckForm
 from .models import PaymentModel
 from .services.client_ip import get_client_ip, is_ip_valid
@@ -67,6 +68,23 @@ class SendCheckFormView(AdminRequired, UpdateView):
     form_class = SendPaymentCheckForm
     model = PaymentModel
 
+    def get_object(self, queryset=None):
+        obj: PaymentModel = super().get_object(queryset=queryset)
+        if obj.is_check_sent:
+            messages.add_message(
+                request=self.request,
+                level=messages.WARNING,
+                message="Чек уже был отправлен."
+            )
+            raise CheckAlreadySentException
+        return obj
+
+    def get(self, request, *args, **kwargs):
+        try:
+            return super().get(request, *args, **kwargs)
+        except CheckAlreadySentException:
+            return redirect(self.get_success_url())
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         ctx = env_ctx_processor(self.request)
@@ -74,10 +92,12 @@ class SendCheckFormView(AdminRequired, UpdateView):
         return context
 
     def form_valid(self, form):
+        payment: PaymentModel = self.object
         context = self.get_context_data()
+
         try:
             send_check(
-                payment_object=self.object,
+                payment_object=payment,
                 context=context
             )
             messages.add_message(
@@ -85,6 +105,10 @@ class SendCheckFormView(AdminRequired, UpdateView):
                 level=messages.SUCCESS,
                 message="Чек успешно отправлен."
             )
+
+            payment.is_check_sent = True
+            payment.save()
+
             return super().form_valid(form=form)
 
         except Exception as ex:

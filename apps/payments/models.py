@@ -43,10 +43,6 @@ class PaymentModel(models.Model):
         verbose_name="Оплачен",
         default=False,
     )
-    is_closed = models.BooleanField(
-        verbose_name="Закрыт",
-        default=False
-    )
     create_date = models.DateTimeField(
         verbose_name="Время создания",
     )
@@ -54,6 +50,12 @@ class PaymentModel(models.Model):
         verbose_name="Время закрытия",
         null=True,
         blank=True
+    )
+    is_check_sent = models.BooleanField(
+        verbose_name="Чек отправлен",
+        null=False,
+        blank=False,
+        default=False,
     )
     check_file = models.FileField(
         verbose_name="Файл чека",
