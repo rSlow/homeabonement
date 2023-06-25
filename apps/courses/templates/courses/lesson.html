@@ -13,7 +13,7 @@
     {% endcompress %}
 
     {#    PLYR PLAYER    #}
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.3/plyr.css"/>
+    <link rel="stylesheet" href="{% static 'base/css/plyr.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -41,7 +41,7 @@
 
 {% block javascript %}
     {#    PLYR PLAYER    #}
-    <script src="https://cdn.plyr.io/3.6.3/plyr.js"></script>
+    <script src="{% static 'base/js/plyr.js' %}"></script>
 
     <script src="{% static 'courses/js/lesson.js' %}"></script>
 {% endblock %}
