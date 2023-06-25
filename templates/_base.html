@@ -46,12 +46,15 @@
                         {% endblock %}
 
                         {% if user.is_superuser %}
+                            <a class="mobile-admin-navbar-button" href="{% url 'admin:index' %}">
+                                <img src="{% static 'base/img/admin-icon.svg' %}" alt="admin">
+                            </a>
                             <a class="underline admin-button" href="{% url 'admin:index' %}">Администрирование</a>
                         {% endif %}
 
-{#                        {% if user.is_course_purchased %}#}
-{#                            <a class="underline" href="{% url 'lessons' %}">К урокам</a>#}
-{#                        {% endif %}#}
+                        {# {% if user.is_course_purchased %} #}
+                        {#     <a class="underline" href="{% url 'lessons' %}">К урокам</a> #}
+                        {# {% endif %} #}
                     </div>
 
                     <div class="navbar-user-block">
