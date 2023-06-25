@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 from django.core.validators import FileExtensionValidator
@@ -35,6 +36,10 @@ class Lesson(models.Model):
         verbose_name_plural = "уроки"
 
 
+def get_upload_video_path(instance: "Video", filename: str):
+    return os.path.join('lessons', 'videos', str(instance.resolution), filename)
+
+
 class Video(models.Model):
     resolution = models.IntegerField(
         verbose_name="Разрешение видео",
@@ -42,7 +47,7 @@ class Video(models.Model):
     file = models.FileField(
         verbose_name="Видео",
         validators=[FileExtensionValidator(allowed_extensions=['mp4'])],
-        upload_to='lessons/videos'
+        upload_to=get_upload_video_path
     )
     lesson = models.ForeignKey(
         to=Lesson,
