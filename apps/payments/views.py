@@ -82,13 +82,15 @@ class SendCheckFormView(AdminRequired, UpdateView):
                 level=messages.SUCCESS,
                 message="Чек успешно отправлен."
             )
+            return super().form_valid(form=form)
+
         except Exception as ex:
             messages.add_message(
                 request=self.request,
                 level=messages.ERROR,
-                message=f"Ошибка при отправке чека - {ex.args}"
+                message=f"Ошибка при отправке чека - {ex}"
             )
-        return super().form_valid(form=form)
+            return super().form_invalid(form=form)
 
     def get_success_url(self):
         return reverse_lazy("admin:payments_paymentmodel_changelist")

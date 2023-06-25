@@ -39,5 +39,4 @@ def send_check(payment_object: PaymentModel, context: dict):
         content=check_file.file.read(),
         mimetype=check_file.file.content_type
     )
-    raise NotImplementedError
     message.send()
