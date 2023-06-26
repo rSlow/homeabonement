@@ -20,6 +20,12 @@ class HomePageView(TemplateView):
             static("pages/img/home/cards/5.jpg"),
         ],
         "feedback_photos": [
+            static("pages/img/home/feedback/1.jpg"),
+            static("pages/img/home/feedback/2.jpg"),
+            static("pages/img/home/feedback/3.jpg"),
+            static("pages/img/home/feedback/4.jpg"),
+            static("pages/img/home/feedback/5.jpg"),
+            static("pages/img/home/feedback/6.jpg"),
             static("pages/img/home/feedback/7.jpg"),
             static("pages/img/home/feedback/8.jpg"),
             static("pages/img/home/feedback/9.jpg"),
@@ -54,12 +60,6 @@ class HomePageView(TemplateView):
             "Сможете заниматься спортом в удовольствие",
         ],
     }
-
-    def get(self, request, *args, **kwargs):
-        user = self.request.user
-        # if user.is_authenticated and user.is_course_purchased:
-        #     return redirect("lessons")
-        return super().get(request, *args, **kwargs)
 
 
 class PolicyPageView(TemplateView):
