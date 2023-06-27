@@ -191,6 +191,13 @@ a.main-button {
   font-weight: 700;
 }
 
+.about-video {
+  box-shadow: 0 0 10px 5px black;
+  @include media_screen_width-576px {
+    box-shadow: 0 0 5px 2px black;
+  }
+}
+
 /* ###### POINTS ###### */
 
 .points-block {
