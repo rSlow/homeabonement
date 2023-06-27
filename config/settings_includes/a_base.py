@@ -75,7 +75,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "config.context_processors.env_ctx_processor",
+                "config.env_context_processor.env_ctx_processor",
             ],
             'libraries': {
                 'debug': 'apps.accounts.templatetags.debug',

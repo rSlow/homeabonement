@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.views.generic import FormView, UpdateView
 from yookassa.domain.notification import WebhookNotification
 
-from config.context_processors import env_ctx_processor
+from config.env_context_processor import env_ctx_processor
 from config.permissions import CourseNotPurchaseRequired, AdminRequired
 from config.settings import ENV
 from .exceptions import CheckAlreadySentException
