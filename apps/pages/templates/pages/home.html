@@ -44,13 +44,13 @@
                     <div class="title-text">
                         <h4 class="title__pre-desc">
                             Онлайн-марафон от
-                            <a class="title-inst-icon-wrapper"
-                               href="https://instagram.com/ikovbiy">
-                                <img class="title-inst-icon"
-                                     src="{% static 'pages/img/home/logo-instagram.svg' %}"
-                                     alt="">
-                            </a>
-                            <b>@ikovbiy</b>
+{#                            <a class="title-inst-icon-wrapper"#}
+{#                               href="https://instagram.com/ikovbiy">#}
+{#                                <img class="title-inst-icon"#}
+{#                                     src="{% static 'pages/img/home/logo-instagram.svg' %}"#}
+{#                                     alt="">#}
+{#                            </a>#}
+                            <b>@snezhana.kovbiy</b>
                         </h4>
                         <div class="title__desc">
                             <h1>ДОМАШНИЙ</h1>
@@ -151,7 +151,7 @@
                 <div class="author-block-row">
                     <div class="author-text-block">
                         <div class="author-text-block-header">
-                            Привет, я Инна!
+                            Привет, я Снежана!
                         </div>
                         <div class="author-text-block-content">
                             <p class="author-name">Тренер по ЗУМБА.</p>
@@ -228,21 +228,21 @@
             </div>
         </div>
 
-        <div class="feedback">
-            <h2 class="centered feedback-header">Отзывы:</h2>
-            <div class="feedback-slider-wrapper">
-
-                {% include "pages/includes/feedback-carousel.html" with photos=feedback_photos %}
-
-                <button id="feedback-slider-prev-button" class="slider-button white-shadow feedback-slider-button-prev">
-                    {% include 'pages/includes/back-img.html' %}
-                </button>
-                <button id="feedback-slider-next-button" class="slider-button white-shadow feedback-slider-button-next">
-                    {% include 'pages/includes/forward-img.html' %}
-                </button>
-
-            </div>
-        </div>
+{#        <div class="feedback">#}
+{#            <h2 class="centered feedback-header">Отзывы:</h2>#}
+{#            <div class="feedback-slider-wrapper">#}
+{##}
+{#                {% include "pages/includes/feedback-carousel.html" with photos=feedback_photos %}#}
+{##}
+{#                <button id="feedback-slider-prev-button" class="slider-button white-shadow feedback-slider-button-prev">#}
+{#                    {% include 'pages/includes/back-img.html' %}#}
+{#                </button>#}
+{#                <button id="feedback-slider-next-button" class="slider-button white-shadow feedback-slider-button-next">#}
+{#                    {% include 'pages/includes/forward-img.html' %}#}
+{#                </button>#}
+{##}
+{#            </div>#}
+{#        </div>#}
 
         <div class="take-part-button under">
             <a class="main-button large"
@@ -265,7 +265,8 @@
                         © 2023
                         <a class="underline" href="https://homeabonement.ru">homeabonement.ru</a>
                         - ДОМАШНИЙ АБОНЕМЕНТ
-                        {# - by <a class="underline" href="https://t.me/rs1ow">rSlow</a> #}
+                         - by <b>rSlow</b>
+{#                         - by <a class="underline" href="https://t.me/rs1ow">rSlow</a> #}
                     </p>
                 </div>
                 <div class="footer-buttons-row">
