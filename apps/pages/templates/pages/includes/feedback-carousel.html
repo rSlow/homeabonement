@@ -4,7 +4,6 @@
     {% for photo_url in photos %}
         <div class="feedback-slider-item-wrapper">
             <img class="feedback-slider-item"
-                 data-gallery="clickable"
                  src="{{ photo_url }}"
                  alt="{{ photo_url|split:'/'|index:-1 }}">
         </div>

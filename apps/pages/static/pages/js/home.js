@@ -90,12 +90,28 @@ $(document).ready(function () {
 })
 
 $(document).ready(function () {
-    new CustomPhotoViewer(
-        "#author-carousel img[data-gallery='clickable']",
-        ".owl-item:not(.cloned)"
-    )
-    new CustomPhotoViewer(
-        "#feedback-carousel img[data-gallery='clickable']",
-        ".owl-item:not(.cloned)"
-    )
+    new Viewer(
+        document.querySelector('#author-carousel'),
+        {
+            title: false,
+            filter(image) {
+                const owlWrapper = $(image).parent().parent()
+                const isCloned = owlWrapper.hasClass("cloned")
+                const isActive = owlWrapper.hasClass("active")
+                return isActive || !isCloned;
+            },
+        }
+    );
+    new Viewer(
+        document.querySelector('#feedback-carousel'),
+        {
+            title: false,
+            filter(image) {
+                const owlWrapper = $(image).parent().parent()
+                const isCloned = owlWrapper.hasClass("cloned")
+                const isActive = owlWrapper.hasClass("active")
+                return isActive || !isCloned;
+            },
+        }
+    );
 })

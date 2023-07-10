@@ -11,20 +11,17 @@
     {% compress css %}
         <link rel="stylesheet" type="text/x-scss" href="{% static 'pages/css/home/home.scss' %}">
         <link rel="stylesheet" type="text/x-scss" href="{% static 'pages/css/home/footer.scss' %}">
-    {% endcompress %}
-
-    {#    OWL CAROUSEL    #}
-    {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static 'base/css/owlcarousel/owl.carousel.min.scss' %}">
-        <link rel="stylesheet" type="text/x-scss" href="{% static 'base/css/owlcarousel/owl.theme.default.min.scss' %}">
         <link rel="stylesheet" type="text/x-scss" href="{% static 'pages/css/home/owlcarousel.scss' %}">
     {% endcompress %}
 
+    {#    OWL CAROUSEL    #}
+    {% include 'cdn/owlcarousel/owlcarousel_css.html' %}
+
     {#    PLYR PLAYER    #}
-    <link rel="stylesheet" href="{% static 'base/css/plyr.css' %}"/>
+    {% include 'cdn/plyr/plyr_css.html' %}
 
     {#    PHOTOVIEWER    #}
-    <link rel="stylesheet" href="{% static 'base/css/photoviewer/photoviewer.css' %}"/>
+    {% include 'cdn/photoviewer/photoviewer_css.html' %}
 
 {% endblock %}
 
@@ -265,8 +262,8 @@
                         © 2023
                         <a class="underline" href="https://homeabonement.ru">homeabonement.ru</a>
                         - ДОМАШНИЙ АБОНЕМЕНТ
-                         - by <b>rSlow</b>
-{#                         - by <a class="underline" href="https://t.me/rs1ow">rSlow</a> #}
+                        - by <b>rSlow</b>
+                        {#                         - by <a class="underline" href="https://t.me/rs1ow">rSlow</a> #}
                     </p>
                 </div>
                 <div class="footer-buttons-row">
@@ -285,13 +282,12 @@
     <script src="{% static 'pages/js/home.js' %}"></script>
 
     {#    OWL CAROUSEL    #}
-    <script src="{% static 'base/js/owl.carousel.min.js' %}"></script>
+    {% include 'cdn/owlcarousel/owlcarousel_js.html' %}
 
     {#    PLYR PLAYER    #}
-    <script src="{% static 'base/js/plyr.js' %}"></script>
+    {% include 'cdn/plyr/plyr_js.html' %}
 
     {#    PHOTOVIEWER    #}
-    <script src="{% static 'base/js/photoviewerCreator.js' %}"></script>
-    <script src="{% static 'base/js/photoviewer.js' %}"></script>
+    {% include 'cdn/photoviewer/photoviewer_js.html' %}
 
 {% endblock %}
