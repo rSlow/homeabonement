@@ -27,6 +27,9 @@
                            href="{% url 'lesson' pk=lesson.pk %}">
                             {% if lesson.thumbnail %}
                                 <img src="{{ lesson.thumbnail.url }}" alt="LESSON THUMBNAIL" class="lesson-thumbnail">
+                            {% else %}
+                                <img src="{% static 'courses/img/lesson-standart-background.jpg' %}"
+                                     alt="LESSON THUMBNAIL" class="lesson-thumbnail">
                             {% endif %}
                             <div class="lesson-title">
                                 Урок №{{ lesson.number }}

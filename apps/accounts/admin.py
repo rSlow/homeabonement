@@ -43,15 +43,21 @@ class CustomUserAdmin(UserAdmin):
         return qs
 
     def is_email_confirmed(self, obj: CustomUser):
-        if obj.emailaddress_set.first().verified:
+        email_address_obj: EmailAddress | None = obj.emailaddress_set.first()
+        if email_address_obj and email_address_obj.verified:
             return format_html(self.yes_icon)
         else:
             return format_html(self.no_icon)
 
     def make_verified(self, _, queryset):
         users: list[CustomUser] = queryset.all()
-        id_list = [user.id for user in users]
-        EmailAddress.objects.filter(user_id__in=id_list).update(verified=True)
+        email_address_obj = EmailAddress.objects.filter(user_id__in=[user.id for user in users])
+        if email_address_obj:
+            email_address_obj.update(verified=True)
+        else:
+            EmailAddress.objects.bulk_create(
+                [EmailAddress(user_id=user.id, email=user.email, verified=True) for user in users]
+            )
 
     def make_course_purchased(self, _, queryset):
         queryset.update(is_course_purchased=True)
